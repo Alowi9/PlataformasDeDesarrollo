@@ -11,6 +11,7 @@ namespace ConsoleApp2
             Calculadora calculadora = new Calculadora();
             Class1 clase = new Class1();
 
+            /*
             calculadora.SetNumero1(13);
             Console.WriteLine(calculadora.GetNumero1());
 
@@ -19,6 +20,22 @@ namespace ConsoleApp2
 
             calculadora.Numero2 = 20;
             Console.WriteLine(calculadora.Numero2);
+            */
+
+           calculadora.Numero2 = 0;
+            int num2 = calculadora.Numero2;
+           calculadora.Numero1 = 3;
+            int num1 = calculadora.Numero1;
+            Console.WriteLine(calculadora.Numero1);
+            Console.WriteLine(calculadora.Numero2);
+            Console.WriteLine("---------");
+
+            Console.WriteLine (calculadora.Sumar(num1, num2) );
+            Console.WriteLine (calculadora.Restar(num1, num2));
+            Console.WriteLine (calculadora.Multiplicar (num1, num2));
+            Console.WriteLine (calculadora.Dividir(num1, num2));
+
+
         }
     }
 }
