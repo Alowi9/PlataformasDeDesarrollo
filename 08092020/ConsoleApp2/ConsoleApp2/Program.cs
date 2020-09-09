@@ -11,6 +11,9 @@ namespace ConsoleApp2
             Calculadora calculadora = new Calculadora();
             Class1 clase = new Class1();
 
+            CalculadoraCientifica cc1 = new CalculadoraCientifica();
+
+
             /*
             calculadora.SetNumero1(13);
             Console.WriteLine(calculadora.GetNumero1());
@@ -34,6 +37,19 @@ namespace ConsoleApp2
             Console.WriteLine (calculadora.Restar(num1, num2));
             Console.WriteLine (calculadora.Multiplicar (num1, num2));
             Console.WriteLine (calculadora.Dividir(num1, num2));
+            Console.WriteLine("---------");
+
+            /*--------------------------------------------------------------*/
+
+            Console.WriteLine(calculadora.Sumar(2,5) );
+            Console.WriteLine(calculadora.Restar(5, 5));
+            Console.WriteLine(calculadora.Multiplicar(1, 10));
+            Console.WriteLine(calculadora.Dividir(10, 5));
+            Console.WriteLine("---------");
+
+
+            Console.WriteLine(cc1.Potencia(2, 3));
+
 
 
         }

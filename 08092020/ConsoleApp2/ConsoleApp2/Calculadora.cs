@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp2
 {
-    class Calculadora
+    public class Calculadora
     {
 
         private int numero1;
@@ -40,6 +40,9 @@ namespace ConsoleApp2
         {
             return numero1 * numero2;
         }
+
+
+
 
         public int Dividir(int numero1, int numero2)
         {
