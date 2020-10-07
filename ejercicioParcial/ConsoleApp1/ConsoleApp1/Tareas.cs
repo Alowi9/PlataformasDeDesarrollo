@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ConsoleApp1
 {
-    class Tareas
+    public class Tareas
     {
+        [Key]    
+        public int id { get; set; }
         public String titulo { get; set; }
         public String vencimiento { get; set; }
         public String estimacion { get; set; }
-        public Recursos responsable { get; set; }
+        public int IdRecursos { get; set; } 
+    public Recursos responsable { get; set; }
         public bool estado { get; set; }
 
-        public Tareas(string titulo, string vencimiento, string estimacion, Recursos responsable, bool estado)
+
+        public Tareas()  { }   //constructor implicito 
+
+        public Tareas(int id, string titulo, string vencimiento, string estimacion, Recursos responsable, bool estado)
         {
+            this.id = id;
             this.titulo = titulo;
             this.vencimiento = vencimiento;
             this.estimacion = estimacion;
