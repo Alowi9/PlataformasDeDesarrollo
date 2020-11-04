@@ -14,7 +14,7 @@ namespace BlazorApp1.Data
         public String nombre { get; set; }
 
         public int IdUsuario { get; set; }
-        public Usuarios usuario { get; set; }
+        public Usuarios User { get; set; }
 
 
         public Recursos() { }   //constructor implicito 
@@ -25,7 +25,7 @@ namespace BlazorApp1.Data
             this.id = id;
             this.nombre = nombre;
             this.IdUsuario = IdUsuario;
-            this.usuario = usuario;
+            this.User = usuario;
         }
 
 
