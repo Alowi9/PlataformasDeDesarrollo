@@ -1,0 +1,44 @@
+﻿@page "/Recursos/EditarRecurso/{id:int}"
+@using BlazorApp1.Data
+@inject RecursosService RecursosSer
+@inject NavigationManager navigation
+
+<h3>Crear Recurso</h3>
+
+<EditForm Model="@Modelo" OnValidSubmit="@Guardar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+
+    <InputText @bind-Value="Modelo.nombre" />
+    
+
+    <button type="submit">Guardar</button>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+    public Recursos Modelo { get; set; } = new Recursos();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (id > 0)
+        {
+            Modelo = await RecursosSer.Get(id);
+        }
+        else
+        {
+            Modelo = new Recursos();
+        }
+    }
+
+
+    private async void Guardar()
+    {
+        await RecursosSer.Save(Modelo);
+        navigation.NavigateTo("Recursos/ListadoDeRecursos");
+    }
+}

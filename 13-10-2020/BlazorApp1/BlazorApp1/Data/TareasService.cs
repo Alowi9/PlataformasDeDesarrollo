@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -6,18 +8,57 @@ namespace BlazorApp1.Data
 {
     public class TareasService
     {
-        public Tareas[] GetTareas()
+        public List<Tareas> getTareas()
         {
-            Tareas[] resultado = new Tareas[5];
+            var ctx = new dbContext();
+            var lista = ctx.Tareas.ToList();
+            return lista;
 
-            resultado[0] = new Tareas(1, "Tarea1", "30/06/2020", "10", false);
-            resultado[1] = new Tareas(2, "Tarea2", "30/07/2020", "11", false);
-            resultado[2] = new Tareas(3, "Tarea3", "30/08/2020", "12", false);
-            resultado[3] = new Tareas(4, "Tarea4", "30/09/2020", "13", false);
-            resultado[4] = new Tareas(5, "Tarea5", "30/10/2020", "14", false);
-
-
-            return resultado;
         }
+
+        private dbContext context;
+
+        public TareasService(dbContext _context)
+        {
+            context = _context;
+        }
+
+        public async Task<Tareas> Get(int id)
+        {
+            return await context.Tareas.Where(i => i.id == id).SingleAsync();
+        }
+
+        public async Task<List<Tareas>> GetAll()
+        {
+            return await context.Tareas.ToListAsync();
+        }
+
+        public async Task<Tareas> Save(Tareas value)
+        {
+            if (value.id == 0)
+            {
+                await context.Tareas.AddAsync(value);
+            }
+            else
+            {
+                context.Tareas.Update(value);
+            }
+            await context.SaveChangesAsync();
+            return value;
+        }
+
+        public async Task<bool> Remove(int id)
+        {
+
+            var entidad = await context.Tareas.Where(i => i.id == id).SingleAsync();
+            context.Tareas.Remove(entidad);
+            await context.SaveChangesAsync();
+            return true;
+
+        }
+
+
+
+
     }
 }
