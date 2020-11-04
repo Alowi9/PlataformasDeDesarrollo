@@ -31,7 +31,7 @@ namespace BlazorApp1.Data
 
         public async Task<List<Recursos>> GetAll()
         {
-            return await context.Recursos.ToListAsync();
+            return await context.Recursos.Include(i=>i.usuario).ToListAsync();
         }
 
         public async Task<Recursos> Save(Recursos value)
@@ -56,6 +56,11 @@ namespace BlazorApp1.Data
             await context.SaveChangesAsync();
             return true;
 
+        }
+
+        public async Task<List<Usuarios>> GetUsuarios()
+        {
+            return await context.Usuarios.ToListAsync();
         }
 
 
