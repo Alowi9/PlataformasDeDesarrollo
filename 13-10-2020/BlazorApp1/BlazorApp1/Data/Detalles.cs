@@ -14,10 +14,10 @@ namespace BlazorApp1.Data
         public string Fecha { get; set; }
         public string Tiempo { get; set; }
 
-        public int IdRecurso { get; set; }
+        public int Recurid { get; set; }
         public Recursos Recur { get; set; }
 
-        public int IdTarea { get; set; }
+        public int Tareaid { get; set; }
         public Tareas Tarea { get; set; }
 
         public Detalles() { }   //constructor implicito 
@@ -28,9 +28,9 @@ namespace BlazorApp1.Data
             this.id = id;
             this.Fecha = fecha;
             this.Tiempo = tiempo;
-            this.IdRecurso = IdRecurso;
+            this.Recurid = IdRecurso;
             this.Recur = recurso;
-            this.IdTarea = IdTarea;
+            this.Tareaid = IdTarea;
             this.Tarea = tarea;
         }
 

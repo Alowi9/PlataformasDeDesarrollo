@@ -13,7 +13,7 @@ namespace BlazorApp1.Data
         public int id { get; set; }
         public String nombre { get; set; }
 
-        public int IdUsuario { get; set; }
+        public int Userid { get; set; }
         public Usuarios User { get; set; }
 
 
@@ -24,7 +24,7 @@ namespace BlazorApp1.Data
         {
             this.id = id;
             this.nombre = nombre;
-            this.IdUsuario = IdUsuario;
+            this.Userid = IdUsuario;
             this.User = usuario;
         }
 

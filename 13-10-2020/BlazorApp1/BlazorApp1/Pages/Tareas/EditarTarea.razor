@@ -10,10 +10,34 @@
     <ValidationSummary />
 
 
-    <InputText @bind-Value="Modelo.titulo" />
-    <InputText @bind-Value="Modelo.vencimiento" />
-    <InputText @bind-Value="Modelo.estimacion" />
+
+    <div class="form-group row">
+
+        <div class="col-sm-10">
+            <InputText @bind-Value="Modelo.titulo" />
+            <InputText @bind-Value="Modelo.vencimiento" />
+            <InputText @bind-Value="Modelo.estimacion" />
+
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <InputSelect @bind-Value="idrecurso">
+            <option value="0">Elija un Usuario</option>
+            @foreach (var item in recurso)
+            {
+                <option value="@item.id">@item.nombre</option>
+            }
+        </InputSelect>
+    </div>
+
     
+
+
+
+
+
 
     <button type="submit">Guardar</button>
 </EditForm>
@@ -25,21 +49,30 @@
 
     public Tareas Modelo { get; set; } = new Tareas();
 
+    public string idrecurso { get; set; }
+
+    private List<Recursos> recurso;
+
     protected override async Task OnInitializedAsync()
     {
         if (id > 0)
         {
             Modelo = await Tareas.Get(id);
+            idrecurso = Modelo.responsableid.ToString();
         }
         else
         {
             Modelo = new Tareas();
         }
+
+        recurso = await Tareas.GetRecursos();
+
     }
 
 
     private async void Guardar()
     {
+        Modelo.responsableid = int.Parse(idrecurso);
         await Tareas.Save(Modelo);
         navigation.NavigateTo("Tareas/ListadoDeTareas");
     }

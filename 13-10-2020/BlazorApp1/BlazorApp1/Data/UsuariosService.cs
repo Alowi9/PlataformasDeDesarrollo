@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Refit;
 
 namespace BlazorApp1.Data
 {
@@ -31,8 +32,17 @@ namespace BlazorApp1.Data
 
         public async Task<List<Usuarios>> GetAll()
         {
-            return await context.Usuarios.ToListAsync();
+            // return await context.Usuarios.ToListAsync();
+            var remoteService = RestService.For<RemoteService>("https://localhost:44357/api/");
+            return await remoteService.GetAllUsuario();
+
         }
+
+      /*  public List<Usuarios> GetAllUsuario()
+        {
+            var
+            return  context.Usuarios.ToList();
+        }*/
 
         public async Task<Usuarios> Save(Usuarios value)
         {

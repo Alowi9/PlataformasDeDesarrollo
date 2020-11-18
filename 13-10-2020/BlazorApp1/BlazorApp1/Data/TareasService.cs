@@ -30,7 +30,7 @@ namespace BlazorApp1.Data
 
         public async Task<List<Tareas>> GetAll()
         {
-            return await context.Tareas.ToListAsync();
+            return await context.Tareas.Include(i => i.responsable).ToListAsync();
         }
 
         public async Task<Tareas> Save(Tareas value)
@@ -55,6 +55,11 @@ namespace BlazorApp1.Data
             await context.SaveChangesAsync();
             return true;
 
+        }
+
+        public async Task<List<Recursos>> GetRecursos()
+        {
+            return await context.Recursos.ToListAsync();
         }
 
 

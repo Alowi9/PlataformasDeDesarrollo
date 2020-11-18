@@ -48,7 +48,7 @@
         if (id > 0)
         {
             Modelo = await RecursosSer.Get(id);
-            iduser = Modelo.IdUsuario.ToString();
+            iduser = Modelo.Userid.ToString();
         }
         else
         {
@@ -62,7 +62,7 @@
 
     private async void Guardar()
     {
-        Modelo.IdUsuario = int.Parse(iduser);
+        Modelo.Userid = int.Parse(iduser);
         await RecursosSer.Save(Modelo);
         navigation.NavigateTo("Recursos/ListadoDeRecursos");
     }

@@ -60,6 +60,16 @@ namespace BlazorApp1.Data
         }
 
 
+        public async Task<List<Recursos>> GetRecursos()
+        {
+            return await context.Recursos.ToListAsync();
+        }
+
+        public async Task<List<Tareas>> GetTareas()
+        {
+            return await context.Tareas.ToListAsync();
+        }
+
 
     }
 

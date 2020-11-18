@@ -13,7 +13,7 @@ namespace BlazorApp1.Data
         public String titulo { get; set; }
         public String vencimiento { get; set; }
         public String estimacion { get; set; }
-        public int IdRecursos { get; set; }
+        public int responsableid { get; set; }
         public Recursos responsable { get; set; }
         public bool estado { get; set; }
 
@@ -26,7 +26,7 @@ namespace BlazorApp1.Data
             this.titulo = titulo;
             this.vencimiento = vencimiento;
             this.estimacion = estimacion;
-            this.IdRecursos = IdRecursos;
+            this.responsableid = IdRecursos;
             this.responsable = responsable;
             this.estado = estado;
         }

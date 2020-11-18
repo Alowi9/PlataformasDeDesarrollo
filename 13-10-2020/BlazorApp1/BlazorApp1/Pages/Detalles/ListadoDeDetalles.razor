@@ -19,6 +19,8 @@ else
             <tr>
                 <th>Fecha</th>
                 <th>Tiempo</th>
+                <th>Recurso</th>
+                <th>Tarea</th>
 
 
                 <th>Acciones</th>
@@ -31,6 +33,8 @@ else
 
                 <td>@item.Fecha</td>
                 <td>@item.Tiempo</td>
+                <td>@item.Recur.nombre</td>
+                <td>@item.Tarea.titulo</td>
 
                 <td><button class="btn" @onclick="()=>Editar(item.id)">Editar</button> <button class="btn" @onclick="()=>Borrar(item.id)">Borrar</button></td>
             </tr>
@@ -53,6 +57,10 @@ else
     }
 
         */
+
+
+
+
 
     private List<Detalles> detalles;
 
