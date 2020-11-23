@@ -1,5 +1,6 @@
 ﻿using BlazorApp1.Pages;
 using Microsoft.EntityFrameworkCore;
+using Refit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,10 @@ namespace BlazorApp1.Data
 
         public async Task<List<Recursos>> GetAll()
         {
-            return await context.Recursos.Include(i=>i.User).ToListAsync();
+            // return await context.Recursos.Include(i=>i.User).ToListAsync();
+            var remoteService = RestService.For<RemoteService>("https://localhost:44357/api/");
+            return await remoteService.GetAllRecurso();
+
         }
 
         public async Task<Recursos> Save(Recursos value)

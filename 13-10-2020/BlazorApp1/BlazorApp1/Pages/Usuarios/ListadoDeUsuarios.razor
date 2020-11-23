@@ -1,6 +1,7 @@
 ﻿@page "/Usuarios/ListadoDeUsuarios"
 @using BlazorApp1.Data
 @inject UsuariosService Usuario
+
 @inject NavigationManager navigation
 @inject IJSRuntime JsRuntime
 
@@ -40,6 +41,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         usuarios = await Usuario.GetAll();
+        var tipos = await Usuario.GetAll();
     }
 
     protected void Editar(int id)

@@ -9,13 +9,17 @@ namespace BlazorApp1.Data
     public interface RemoteService
     {
 
-        [Get("/TipoTarea")]
-        Task<List<Tareas>> GetAllTipoTarea();
+        [Get("/Tareas")]
+        Task<List<Tareas>> GetAllTarea();
 
         [Get("/Usuarios")]
         Task<List<Usuarios>> GetAllUsuario();
 
-
+        [Get("/Recursos")]
+        Task<List<Recursos>> GetAllRecurso();
+        
+        [Get("/Detalles")]
+        Task<List<Detalles>> GetAllDetalle();
 
 
 

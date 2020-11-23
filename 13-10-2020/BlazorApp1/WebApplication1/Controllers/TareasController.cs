@@ -1,5 +1,6 @@
 ﻿using ClassLibrary1.Entidades;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace WebApplication1.Controllers
 
         public List<Tareas> Get()
         {
-            return _context.Tareas.ToList();
+            return _context.Tareas.Include(i => i.responsable).ToList();
         }
 
 

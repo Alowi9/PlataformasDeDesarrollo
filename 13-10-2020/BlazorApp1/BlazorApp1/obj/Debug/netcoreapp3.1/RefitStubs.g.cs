@@ -57,10 +57,10 @@ namespace BlazorApp1.Data
         }
 
         /// <inheritdoc />
-        Task<List<Tareas>> RemoteService.GetAllTipoTarea()
+        Task<List<Tareas>> RemoteService.GetAllTarea()
         {
             var arguments = new object[] {  };
-            var func = requestBuilder.BuildRestResultFuncForMethod("GetAllTipoTarea", new Type[] {  });
+            var func = requestBuilder.BuildRestResultFuncForMethod("GetAllTarea", new Type[] {  });
             return (Task<List<Tareas>>)func(Client, arguments);
         }
 
@@ -70,6 +70,22 @@ namespace BlazorApp1.Data
             var arguments = new object[] {  };
             var func = requestBuilder.BuildRestResultFuncForMethod("GetAllUsuario", new Type[] {  });
             return (Task<List<Usuarios>>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
+        Task<List<Recursos>> RemoteService.GetAllRecurso()
+        {
+            var arguments = new object[] {  };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GetAllRecurso", new Type[] {  });
+            return (Task<List<Recursos>>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
+        Task<List<Detalles>> RemoteService.GetAllDetalle()
+        {
+            var arguments = new object[] {  };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GetAllDetalle", new Type[] {  });
+            return (Task<List<Detalles>>)func(Client, arguments);
         }
     }
 }

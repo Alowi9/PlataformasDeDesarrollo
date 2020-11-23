@@ -1,5 +1,6 @@
 ﻿using ClassLibrary1.Entidades;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace WebApplication1.Controllers
 
         public List<Recursos> Get()
         {
-            return _context.Recursos.ToList();
+            return _context.Recursos.Include(i => i.User).ToList();
         }
 
 
