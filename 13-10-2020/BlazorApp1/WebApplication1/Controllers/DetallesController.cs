@@ -30,6 +30,32 @@ namespace WebApplication1.Controllers
             return _context.Detalles.ToList();
         }
 
+        [HttpGet("{id}")]
+        public Detalles Get(int id)
+        {
+            return _context.Detalles.Where(i => i.id == id).Single();
+        }
+
+
+        [HttpPost]
+
+        public Detalles Post(Detalles valor)
+        {
+            if (valor.id == 0)
+            {
+                _context.Detalles.Add(valor);
+            }
+            else
+            {
+                _context.Detalles.Attach(valor);
+                _context.Detalles.Update(valor);
+            }
+
+            _context.SaveChanges();
+            return valor;
+        }
+
+
 
     }
 }

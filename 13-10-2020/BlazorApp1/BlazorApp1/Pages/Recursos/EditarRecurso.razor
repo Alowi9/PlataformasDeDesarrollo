@@ -1,6 +1,7 @@
 ﻿@page "/Recursos/EditarRecurso/{id:int}"
 @using BlazorApp1.Data
 @inject RecursosService RecursosSer
+@inject UsuariosService UsuariosSer
 @inject NavigationManager navigation
 
 <h3>Crear Recurso</h3>
@@ -10,10 +11,10 @@
     <ValidationSummary />
 
     <div class="form-group row">
-        
+
         <div class="col-sm-10">
             <InputText @bind-Value="Modelo.nombre" />
-          
+
         </div>
     </div>
 
@@ -41,7 +42,7 @@
 
     public string iduser { get; set; }
 
-    private List<Usuarios> users;
+    private List<Usuarios> users = new List<Usuarios>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -55,7 +56,7 @@
             Modelo = new Recursos();
         }
 
-        users = await RecursosSer.GetUsuarios();
+        users = await UsuariosSer.GetAll();
 
     }
 

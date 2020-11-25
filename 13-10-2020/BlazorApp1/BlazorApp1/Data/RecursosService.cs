@@ -27,7 +27,9 @@ namespace BlazorApp1.Data
 
         public async Task<Recursos> Get(int id)
         {
-            return await context.Recursos.Where(i => i.id == id).SingleAsync();
+            //return await context.Recursos.Where(i => i.id == id).SingleAsync();
+            var remoteService = RestService.For<RemoteService>("https://localhost:44357/api/");
+            return await remoteService.GetRecurso(id);
         }
 
         public async Task<List<Recursos>> GetAll()
@@ -40,6 +42,7 @@ namespace BlazorApp1.Data
 
         public async Task<Recursos> Save(Recursos value)
         {
+            /*
             if (value.id == 0)
             {
                 await context.Recursos.AddAsync(value);
@@ -50,6 +53,10 @@ namespace BlazorApp1.Data
             }
             await context.SaveChangesAsync();
             return value;
+            */
+            var remoteService = RestService.For<RemoteService>("https://localhost:44357/api/");
+            return await remoteService.GuardarRecursos(value);
+
         }
 
         public async Task<bool> Remove(int id)
@@ -64,7 +71,11 @@ namespace BlazorApp1.Data
 
         public async Task<List<Usuarios>> GetUsuarios()
         {
-            return await context.Usuarios.ToListAsync();
+
+            //return await context.Usuarios.ToListAsync();
+            var remoteService = RestService.For<RemoteService>("https://localhost:44357/api/");
+            return await remoteService.GetAllUsuario();
+
         }
 
 

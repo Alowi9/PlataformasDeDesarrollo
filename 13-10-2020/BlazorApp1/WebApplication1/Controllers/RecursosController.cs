@@ -31,6 +31,32 @@ namespace WebApplication1.Controllers
             return _context.Recursos.Include(i => i.User).ToList();
         }
 
+        [HttpGet("{id}")]
+        public Recursos Get(int id)
+        {
+            return _context.Recursos.Where(i => i.id == id).Single();
+        }
+
+
+
+        [HttpPost]
+
+        public Recursos Post(Recursos valor)
+        {
+            if (valor.id == 0)
+            {
+                _context.Recursos.Add(valor);
+            }
+            else
+            {
+                _context.Recursos.Attach(valor);
+                _context.Recursos.Update(valor);
+            }
+
+            _context.SaveChanges();
+            return valor;
+        }
+
 
 
     }

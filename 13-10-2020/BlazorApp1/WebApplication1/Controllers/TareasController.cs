@@ -31,6 +31,34 @@ namespace WebApplication1.Controllers
             return _context.Tareas.Include(i => i.responsable).ToList();
         }
 
+        [HttpGet("{id}")]
+        public Tareas Get(int id)
+        {
+            return _context.Tareas.Where(i => i.id == id).Single();
+        }
+
+
+
+        [HttpPost]
+
+        public Tareas Post(Tareas valor)
+        {
+            if(valor.id == 0)
+            {
+                _context.Tareas.Add(valor);
+            }
+            else
+            {
+                _context.Tareas.Attach(valor);
+                _context.Tareas.Update(valor);
+            }
+            
+            _context.SaveChanges();
+            return valor;
+        }
+
+
+
 
 
     }

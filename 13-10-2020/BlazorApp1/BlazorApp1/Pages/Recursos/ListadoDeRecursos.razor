@@ -1,10 +1,11 @@
 ﻿@page "/Recursos/ListadoDeRecursos"
 @using BlazorApp1.Data
 @inject RecursosService RecursoSer
+
 @inject NavigationManager navigation
 @inject IJSRuntime JsRuntime
 
-    <h3>Listado De Recursos</h3>
+<h3>Listado De Recursos</h3>
 
 <button class="btn" @onclick="()=>Editar(0)">Nuevo Recurso</button>
 
@@ -26,12 +27,12 @@ else
         <tbody>
             @foreach (var item in Recursos)
             {
-            <tr>
-                <td>@item.nombre</td>
-                <td>@item.User.nombre</td>
+                <tr>
+                    <td>@item.nombre</td>
+                    <td>@item.User.nombre</td>
 
-                <td><button class="btn" @onclick="()=>Editar(item.id)">Editar</button> <button class="btn" @onclick="()=>Borrar(item.id)">Borrar</button></td>
-            </tr>
+                    <td><button class="btn" @onclick="()=>Editar(item.id)">Editar</button> <button class="btn" @onclick="()=>Borrar(item.id)">Borrar</button></td>
+                </tr>
             }
         </tbody>
     </table>
@@ -50,7 +51,7 @@ else
    }
 */
 
-    private List<Recursos> Recursos;
+    private List<Recursos> Recursos = new List<Recursos>();
 
     protected override async Task OnInitializedAsync()
     {

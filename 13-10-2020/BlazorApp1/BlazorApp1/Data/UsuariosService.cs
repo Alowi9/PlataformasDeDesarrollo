@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Refit;
 
@@ -9,6 +10,8 @@ namespace BlazorApp1.Data
 {
     public class UsuariosService
     {
+        private dbContext context;
+
         public List<Usuarios> getUsuarios()
         {
             var ctx = new dbContext();
@@ -18,7 +21,7 @@ namespace BlazorApp1.Data
 
         }
 
-        private dbContext context;
+        
 
         public UsuariosService(dbContext _context)
         {
@@ -27,8 +30,14 @@ namespace BlazorApp1.Data
 
         public async Task<Usuarios> Get(int id)
         {
-            return await context.Usuarios.Where(i => i.id == id).SingleAsync();
+            // return await context.Usuarios.Where(i => i.id == id).SingleAsync();
+            var remoteService = RestService.For<RemoteService>("https://localhost:44357/api/");
+            return await remoteService.GetUsuario(id);
         }
+
+
+
+        
 
         public async Task<List<Usuarios>> GetAll()
         {
@@ -38,14 +47,24 @@ namespace BlazorApp1.Data
 
         }
 
-      /*  public List<Usuarios> GetAllUsuario()
+        public async Task<Usuarios> GuardarUsuario(Usuarios value)
         {
-            var
+            // return await context.Usuarios.ToListAsync();
+            var remoteService = RestService.For<RemoteService>("https://localhost:44357/api/");
+            return await remoteService.GuardarUsuario(value);
+
+        }
+
+
+        public List<Usuarios> GetAllUsuario()
+        {
+            
             return  context.Usuarios.ToList();
-        }*/
+        }
 
         public async Task<Usuarios> Save(Usuarios value)
         {
+            /*
             if (value.id == 0)
             {
                 await context.Usuarios.AddAsync(value);
@@ -55,8 +74,14 @@ namespace BlazorApp1.Data
                 context.Usuarios.Update(value);
             }
             await context.SaveChangesAsync();
-            return value;
+            */
+            var remoteService = RestService.For<RemoteService>("https://localhost:44357/api/");
+            return await remoteService.GuardarUsuario(value);
+            //return value;
         }
+
+      
+
 
         public async Task<bool> Remove(int id )
         {

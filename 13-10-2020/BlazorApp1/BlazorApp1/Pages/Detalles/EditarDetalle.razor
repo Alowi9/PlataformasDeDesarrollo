@@ -1,6 +1,9 @@
 ﻿@page "/Detalles/EditarDetalle/{id:int}"
 @using BlazorApp1.Data
 @inject DetallesService DetalleSer
+@inject RecursosService RecursosSer
+@inject TareasService TareasSer
+
 @inject NavigationManager navigation
 
 <h3>Editar Detalle</h3>
@@ -12,7 +15,7 @@
 
         Fecha
     </label>
-    
+
 
     <div class="form-group row">
 
@@ -22,7 +25,7 @@
 
         </div>
     </div>
-   
+
     <div class="form-group row">
         <InputSelect @bind-Value="idrecurso">
             <option value="0">Elija un Recurso</option>
@@ -70,11 +73,11 @@
 
     public string idrecurso { get; set; }
 
-    private List<Recursos> Recurso;
+    private List<Recursos> Recurso = new List<Recursos>();
 
     public string idtarea { get; set; }
 
-    private List<Tareas> Tarea;
+    private List<Tareas> Tarea = new List<Tareas>();
 
 
     private List<Detalles> detalles;
@@ -93,8 +96,8 @@
             Modelo = new Detalles();
         }
 
-        Recurso = await DetalleSer.GetRecursos();
-        Tarea = await DetalleSer.GetTareas();
+        Recurso = await RecursosSer.GetAll();
+        Tarea = await TareasSer.GetAll();
     }
 
 

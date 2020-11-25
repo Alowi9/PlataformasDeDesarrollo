@@ -65,11 +65,43 @@ namespace BlazorApp1.Data
         }
 
         /// <inheritdoc />
+        Task<Tareas> RemoteService.GuardarTareas(Tareas valor)
+        {
+            var arguments = new object[] { valor };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GuardarTareas", new Type[] { typeof(Tareas) });
+            return (Task<Tareas>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
+        Task<Tareas> RemoteService.GetTarea(int id)
+        {
+            var arguments = new object[] { id };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GetTarea", new Type[] { typeof(int) });
+            return (Task<Tareas>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
         Task<List<Usuarios>> RemoteService.GetAllUsuario()
         {
             var arguments = new object[] {  };
             var func = requestBuilder.BuildRestResultFuncForMethod("GetAllUsuario", new Type[] {  });
             return (Task<List<Usuarios>>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
+        Task<Usuarios> RemoteService.GetUsuario(int id)
+        {
+            var arguments = new object[] { id };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GetUsuario", new Type[] { typeof(int) });
+            return (Task<Usuarios>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
+        Task<Usuarios> RemoteService.GuardarUsuario(Usuarios valor)
+        {
+            var arguments = new object[] { valor };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GuardarUsuario", new Type[] { typeof(Usuarios) });
+            return (Task<Usuarios>)func(Client, arguments);
         }
 
         /// <inheritdoc />
@@ -81,11 +113,43 @@ namespace BlazorApp1.Data
         }
 
         /// <inheritdoc />
+        Task<Recursos> RemoteService.GuardarRecursos(Recursos valor)
+        {
+            var arguments = new object[] { valor };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GuardarRecursos", new Type[] { typeof(Recursos) });
+            return (Task<Recursos>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
+        Task<Recursos> RemoteService.GetRecurso(int id)
+        {
+            var arguments = new object[] { id };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GetRecurso", new Type[] { typeof(int) });
+            return (Task<Recursos>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
         Task<List<Detalles>> RemoteService.GetAllDetalle()
         {
             var arguments = new object[] {  };
             var func = requestBuilder.BuildRestResultFuncForMethod("GetAllDetalle", new Type[] {  });
             return (Task<List<Detalles>>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
+        Task<Detalles> RemoteService.GuardarDetalles(Detalles valor)
+        {
+            var arguments = new object[] { valor };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GuardarDetalles", new Type[] { typeof(Detalles) });
+            return (Task<Detalles>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
+        Task<Detalles> RemoteService.GetDetalles(int id)
+        {
+            var arguments = new object[] { id };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GetDetalles", new Type[] { typeof(int) });
+            return (Task<Detalles>)func(Client, arguments);
         }
     }
 }
