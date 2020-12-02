@@ -43,20 +43,39 @@ namespace WebApplication1.Controllers
 
         public Tareas Post(Tareas valor)
         {
-            if(valor.id == 0)
+            var local = _context.Tareas.Local.FirstOrDefault(e => e.id.Equals(valor.id));
+
+            if (local != null)
+                _context.Entry(local).State = EntityState.Detached;
+
+            if (valor.id == 0)
             {
-                _context.Tareas.Add(valor);
+                _context.Entry(valor).State = EntityState.Added;
             }
             else
             {
-                _context.Tareas.Attach(valor);
-                _context.Tareas.Update(valor);
+                _context.Entry(valor).State = EntityState.Modified;
             }
-            
+
             _context.SaveChanges();
             return valor;
         }
 
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var Borrar = await _context.Tareas.FindAsync(id);
+            if (Borrar == null)
+            {
+                return NotFound();
+            }
+
+            _context.Tareas.Remove(Borrar);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
 
 
 

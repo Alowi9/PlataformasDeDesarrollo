@@ -8,7 +8,7 @@
 <h3>Listado De Usuarios</h3>
 
 
-<button class="btn" @onclick="()=>Editar(0)">Nuevo Usuario</button>
+<button class="btn btn-success mb-3" @onclick="()=>Editar(0)">Nuevo Usuario</button>
 @if (usuarios == null)
 {
 
@@ -27,7 +27,7 @@ else
             {
                 <tr>
                     <td>@item.nombre</td>
-                    <td><button class="btn" @onclick="()=>Editar(item.id)">Editar</button> <button class="btn" @onclick="()=>Borrar(item.id)">Borrar</button></td>
+                    <td><button class="btn btn-warning" @onclick="()=>Editar(item.id)">Editar</button> <button class="btn btn-danger" @onclick="()=>Borrar(item.id)">Borrar</button></td>
                 </tr>
             }
         </tbody>

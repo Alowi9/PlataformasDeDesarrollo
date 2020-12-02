@@ -62,7 +62,7 @@ namespace BlazorApp1.Data
 
         }
 
-        public async Task<bool> Remove(int id)
+      /*  public async Task<bool> Remove(int id)
         {
 
             var entidad = await context.Tareas.Where(i => i.id == id).SingleAsync();
@@ -71,6 +71,19 @@ namespace BlazorApp1.Data
             return true;
 
         }
+*/
+
+        public async Task<Tareas> Remove(int id)
+        {
+
+            var remoteService = RestService.For<RemoteService>("https://localhost:44357/api/");
+
+            return await remoteService.BorrarTarea(id);
+
+
+        }
+
+
 
         public async Task<List<Recursos>> GetRecursos()
         {

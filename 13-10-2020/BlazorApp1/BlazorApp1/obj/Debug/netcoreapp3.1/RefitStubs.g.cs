@@ -81,6 +81,14 @@ namespace BlazorApp1.Data
         }
 
         /// <inheritdoc />
+        Task<Tareas> RemoteService.BorrarTarea(int id)
+        {
+            var arguments = new object[] { id };
+            var func = requestBuilder.BuildRestResultFuncForMethod("BorrarTarea", new Type[] { typeof(int) });
+            return (Task<Tareas>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
         Task<List<Usuarios>> RemoteService.GetAllUsuario()
         {
             var arguments = new object[] {  };
@@ -93,6 +101,14 @@ namespace BlazorApp1.Data
         {
             var arguments = new object[] { id };
             var func = requestBuilder.BuildRestResultFuncForMethod("GetUsuario", new Type[] { typeof(int) });
+            return (Task<Usuarios>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
+        Task<Usuarios> RemoteService.BorrarUsuario(int id)
+        {
+            var arguments = new object[] { id };
+            var func = requestBuilder.BuildRestResultFuncForMethod("BorrarUsuario", new Type[] { typeof(int) });
             return (Task<Usuarios>)func(Client, arguments);
         }
 
@@ -129,6 +145,14 @@ namespace BlazorApp1.Data
         }
 
         /// <inheritdoc />
+        Task<Recursos> RemoteService.BorrarRecurso(int id)
+        {
+            var arguments = new object[] { id };
+            var func = requestBuilder.BuildRestResultFuncForMethod("BorrarRecurso", new Type[] { typeof(int) });
+            return (Task<Recursos>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
         Task<List<Detalles>> RemoteService.GetAllDetalle()
         {
             var arguments = new object[] {  };
@@ -149,6 +173,14 @@ namespace BlazorApp1.Data
         {
             var arguments = new object[] { id };
             var func = requestBuilder.BuildRestResultFuncForMethod("GetDetalles", new Type[] { typeof(int) });
+            return (Task<Detalles>)func(Client, arguments);
+        }
+
+        /// <inheritdoc />
+        Task<Detalles> RemoteService.BorrarDetalle(int id)
+        {
+            var arguments = new object[] { id };
+            var func = requestBuilder.BuildRestResultFuncForMethod("BorrarDetalle", new Type[] { typeof(int) });
             return (Task<Detalles>)func(Client, arguments);
         }
     }

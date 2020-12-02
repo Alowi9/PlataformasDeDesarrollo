@@ -1,6 +1,7 @@
 ﻿using ClassLibrary1.Entidades;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,19 +42,40 @@ namespace WebApplication1.Controllers
 
         public Detalles Post(Detalles valor)
         {
+            var local = _context.Detalles.Local.FirstOrDefault(e => e.id.Equals(valor.id));
+
+            if (local != null)
+                _context.Entry(local).State = EntityState.Detached;
+
             if (valor.id == 0)
             {
-                _context.Detalles.Add(valor);
+                _context.Entry(valor).State = EntityState.Added;
             }
             else
             {
-                _context.Detalles.Attach(valor);
-                _context.Detalles.Update(valor);
+                _context.Entry(valor).State = EntityState.Modified;
             }
 
             _context.SaveChanges();
             return valor;
         }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var Borrar = await _context.Detalles.FindAsync(id);
+            if (Borrar == null)
+            {
+                return NotFound();
+            }
+
+            _context.Detalles.Remove(Borrar);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
 
 
 

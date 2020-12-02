@@ -18,6 +18,10 @@ namespace BlazorApp1.Data
         [Get("/Tareas/{id}")]
         Task<Tareas> GetTarea(int id);
 
+        [Delete("/Tareas/{id}")]
+        Task<Tareas> BorrarTarea(int id);
+
+
 
 
         [Get("/Usuarios")]
@@ -25,6 +29,10 @@ namespace BlazorApp1.Data
         
         [Get("/Usuarios/{id}")]
         Task<Usuarios> GetUsuario(int id);
+
+        [Delete("/Usuarios/{id}")]
+        Task<Usuarios> BorrarUsuario(int id);
+
 
         [Post("/Usuarios")]
         Task<Usuarios> GuardarUsuario(Usuarios valor);
@@ -41,6 +49,11 @@ namespace BlazorApp1.Data
         [Get("/Recursos/{id}")]
         Task<Recursos> GetRecurso(int id);
 
+        [Delete("/Recursos/{id}")]
+        Task<Recursos> BorrarRecurso(int id);
+
+
+
 
 
         [Get("/Detalles")]
@@ -51,6 +64,9 @@ namespace BlazorApp1.Data
 
         [Get("/Detalles/{id}")]
         Task<Detalles> GetDetalles(int id);
+
+        [Delete("/Detalles/{id}")]
+        Task<Detalles> BorrarDetalle(int id);
 
     }
 }

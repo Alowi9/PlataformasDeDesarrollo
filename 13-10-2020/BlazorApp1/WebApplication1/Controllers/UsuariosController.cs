@@ -1,5 +1,6 @@
 ﻿using ClassLibrary1.Entidades;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,24 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet("{id}")]
-        public Usuarios Get(int id)
+        public Usuarios Getu(int id)
         {
             return _context.Usuarios.Where(i => i.id == id).Single();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var Borrar = await _context.Usuarios.FindAsync(id);
+            if (Borrar == null)
+            {
+                return NotFound();
+            }
+
+            _context.Usuarios.Remove(Borrar);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
 
@@ -41,19 +57,25 @@ namespace WebApplication1.Controllers
 
         public Usuarios Post(Usuarios valor)
         {
+            var local = _context.Usuarios.Local.FirstOrDefault(e => e.id.Equals(valor.id));
+
+            if (local != null)
+                _context.Entry(local).State = EntityState.Detached;
+
             if (valor.id == 0)
             {
-                _context.Usuarios.Add(valor);
+                _context.Entry(valor).State = EntityState.Added;
             }
             else
             {
-                _context.Usuarios.Attach(valor);
-                _context.Usuarios.Update(valor);
+                _context.Entry(valor).State = EntityState.Modified;
             }
 
             _context.SaveChanges();
             return valor;
         }
+
+
 
 
 

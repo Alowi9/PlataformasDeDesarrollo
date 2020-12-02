@@ -6,7 +6,7 @@
 
 <h3>Listado De Tareas</h3>
 
-<button class="btn" @onclick="()=>Editar(0)">Nueva Tarea</button>
+<button class="btn btn-success mb-3" @onclick="()=>Editar(0)">Nueva Tarea</button>
 
 @if (Tarea == null)
 {
@@ -35,7 +35,7 @@ else
                 <td>@item.estimacion</td>
                 <th>@item.responsable.nombre</th>
 
-                <td><button class="btn" @onclick="()=>Editar(item.id)">Editar</button> <button class="btn" @onclick="()=>Borrar(item.id)">Borrar</button></td>
+                <td><button class="btn btn-warning" @onclick="()=>Editar(item.id)">Editar</button> <button class="btn btn-danger" @onclick="()=>Borrar(item.id)">Borrar</button></td>
             </tr>
             }
         </tbody>

@@ -43,19 +43,42 @@ namespace WebApplication1.Controllers
 
         public Recursos Post(Recursos valor)
         {
+            var local = _context.Recursos.Local.FirstOrDefault(e => e.id.Equals(valor.id));
+
+            if (local != null)
+                _context.Entry(local).State = EntityState.Detached;
+
             if (valor.id == 0)
             {
-                _context.Recursos.Add(valor);
+                _context.Entry(valor).State = EntityState.Added;
             }
             else
             {
-                _context.Recursos.Attach(valor);
-                _context.Recursos.Update(valor);
+                _context.Entry(valor).State = EntityState.Modified;
             }
 
             _context.SaveChanges();
             return valor;
         }
+
+
+
+            /// Source: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-5.0&tabs=visual-studio#the-deletetodoitem-method
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var Borrar = await _context.Recursos.FindAsync(id);
+            if (Borrar == null)
+            {
+                return NotFound();
+            }
+
+            _context.Recursos.Remove(Borrar);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
 
 
 
